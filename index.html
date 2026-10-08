@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>바이브 카페 - 주문서</title>
+  <!-- CSS 스타일시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- [페이지 상단] 카페 헤더 영역 -->
+  <header>
+    <div class="logo" style="font-size: 3rem;">☕</div>
+    <h1>바이브 카페</h1>
+    <p>당신의 하루에 바이브를 더하다</p>
+  </header>
+
+  <!-- [주문서 폼 영역] JavaScript 유효성 검사를 위해 novalidate 적용 -->
+  <main>
+    <form id="order-form" novalidate>
+      <!-- 1. 이름 (필수 입력) -->
+      <div>
+        <label for="customer-name">이름 (필수):</label>
+        <input type="text" id="customer-name" name="customerName" required>
+      </div>
+
+      <!-- 2. 전화번호 -->
+      <div>
+        <label for="customer-phone">전화번호:</label>
+        <input type="tel" id="customer-phone" name="customerPhone">
+      </div>
+
+      <!-- 3. 음료 선택 (드롭다운) -->
+      <div>
+        <label for="drink-select">음료 선택:</label>
+        <select id="drink-select" name="drink">
+          <option value="" data-price="0">-- 음료를 선택하세요 --</option>
+          <option value="ice-tea" data-price="3000">아이스티 (3,000원)</option>
+          <option value="americano" data-price="3500">아메리카노 (3,500원)</option>
+          <option value="latte" data-price="4000">카페라떼 (4,000원)</option>
+          <option value="mocha" data-price="4500">카페모카 (4,500원)</option>
+          <option value="vanilla-latte" data-price="4500">바닐라라떼 (4,500원)</option>
+          <option value="green-tea-latte" data-price="4500">녹차라떼 (4,500원)</option>
+          <option value="strawberry-latte" data-price="4500">딸기라떼 (4,500원)</option>
+          <option value="strawberry-cake" data-price="5000">딸기케이크 (5,000원)</option>
+          <option value="carrot-cake" data-price="5000">당근케이크 (5,000원)</option>
+        
+        </select>
+      </div>
+
+      <!-- 4. 사이즈 선택 (라디오 버튼) -->
+      <fieldset>
+        <legend>사이즈 선택:</legend>
+        <input type="radio" id="size-s" name="size" value="S" data-price="0">
+        <label for="size-s">S (+0원)</label>
+
+        <input type="radio" id="size-m" name="size" value="M" data-price="500" checked>
+        <label for="size-m">M (+500원)</label>
+
+        <input type="radio" id="size-l" name="size" value="L" data-price="1000">
+        <label for="size-l">L (+1,000원)</label>
+      </fieldset>
+
+      <!-- 5. 추가 옵션 (체크박스) -->
+      <fieldset>
+        <legend>추가 옵션:</legend>
+        <input type="checkbox" id="option-shot" name="options" value="shot" data-price="500">
+        <label for="option-shot">샷 추가 (+500원)</label>
+
+        <input type="checkbox" id="option-cream" name="options" value="cream" data-price="500">
+        <label for="option-cream">크림 추가 (+500원)</label>
+
+        <input type="checkbox" id="option-syrup" name="options" value="syrup" data-price="300">
+        <label for="option-syrup">시럽 추가 (+300원)</label>
+
+        <input type="checkbox" id="option-decaf" name="options" value="decaf" data-price="0">
+        <label for="option-decaf">디카페인 (+0원)</label>
+      </fieldset>
+
+      <!-- 6. 수량 선택 -->
+      <div>
+        <label for="quantity">수량:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+      </div>
+
+      <!-- 7. 요청사항 -->
+      <div>
+        <label for="requests">요청사항:</label>
+        <textarea id="requests" name="requests" rows="4"></textarea>
+      </div>
+
+      <!-- 8. 예상 금액 표시 영역 (주문하기 버튼 바로 위) -->
+      <div id="estimated-price-area">
+        예상 금액: <span id="total-price">0</span>원
+      </div>
+
+      <!-- 9. 주문하기 버튼 & 10. 다시 작성 버튼 -->
+      <div>
+        <button type="submit" id="submit-btn">주문하기</button>
+        <button type="reset" id="reset-btn">다시 작성</button>
+      </div>
+    </form>
+
+    <!-- 11. 주문 확인 메시지 표시 영역 (처음에는 숨김) -->
+    <div id="order-confirmation" style="display: none;"></div>
+  </main>
+
+  <!-- Supabase JS 라이브러리 연결 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 자바스크립트 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>
+
