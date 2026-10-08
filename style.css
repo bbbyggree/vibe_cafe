@@ -1,0 +1,365 @@
+/* ===================================================
+   바이브 카페 (Vibe Cafe) - 주문서 스타일시트
+   =================================================== */
+
+/* [글로벌 변수 설정] 색상은 기존에 조율된 저채도 및 진한 에스프레소 갈색 팔레트 유지 */
+:root {
+  --bg-color: #f7f6f4;
+  --card-bg: #ffffff;
+  --text-main: #2a2522;
+  --text-muted: #6e6862;
+  --border-color: #dedbd5;
+  --border-hover: #c4beb5;
+  --primary-color: #4a382e;          /* 진한 갈색 메인 */
+  --primary-light: #5d473b;          /* hover시 약간 밝은 갈색 */
+  --primary-focus: rgba(74, 56, 46, 0.2); /* 연한 갈색 포커스 그림자 */
+  --primary-shadow: rgba(74, 56, 46, 0.18);
+  --secondary-bg: #eae7e2;
+  --price-bg: #f5f3ef;
+  --price-border: #dedad2;
+  --success-bg: #edf7ed;             /* 연두색 배경 */
+  --success-border: #c8e6c9;
+  --success-text: #2e7d32;           /* 초록 글씨 */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --radius-sm: 8px;                  /* 둥근 모서리 8px */
+  --radius-md: 12px;                 /* 둥근 모서리 12px */
+  --transition: all 0.2s ease-in-out;
+}
+
+/* 기본 리셋 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* 폰트: '맑은 고딕', sans-serif */
+  font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 30px 16px;
+  min-height: 100vh;
+}
+
+/* 최대 너비 520px, 가운데 정렬, 모바일 대응 */
+header,
+main {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ===================================================
+   1. 헤더 영역 (로고 및 카페 안내)
+   =================================================== */
+header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+header .logo {
+  display: inline-block;
+  line-height: 1;
+  margin-bottom: 10px;
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+header .logo:hover {
+  transform: scale(1.15) rotate(-6deg);
+  cursor: default;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+header p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* ===================================================
+   2. 주문서 폼 영역
+   =================================================== */
+form#order-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  /* 부드러운 그림자 */
+  box-shadow: var(--shadow-md);
+}
+
+form#order-form > div {
+  margin-bottom: 18px;
+}
+
+form#order-form > div > label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+/* 입력칸: 너비 100%, 패딩 10px, 둥근 모서리 8px */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: #faf9f7;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);  /* 둥근 모서리 8px */
+  padding: 10px;                   /* 패딩 10px */
+  outline: none;
+  transition: var(--transition);
+}
+
+/* hover 효과 */
+input[type="text"]:hover,
+input[type="tel"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--border-hover);
+  background-color: #ffffff;
+}
+
+/* 포커스 시 테두리 갈색 + 연한 갈색 그림자 */
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ===================================================
+   3. 라디오 / 체크박스 (가로 나란히 배치, gap 간격)
+   =================================================== */
+fieldset {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+  background-color: #fdfcfb;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px; /* 라디오/체크박스 항목 간의 gap 간격 */
+  transition: var(--transition);
+}
+
+fieldset:hover {
+  border-color: var(--border-hover);
+}
+
+fieldset legend {
+  width: 100%;
+  font-size: 0.92rem;
+  font-weight: bold;
+  color: var(--text-main);
+  padding: 0 4px;
+  margin-bottom: 4px;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"] {
+  accent-color: var(--primary-color);
+  cursor: pointer;
+  margin: 0;
+  vertical-align: middle;
+}
+
+fieldset label {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  cursor: pointer;
+  margin-left: -10px; /* input과 label을 하나의 묶음처럼 gap 조절 */
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: var(--transition);
+  user-select: none;
+}
+
+fieldset label:hover {
+  color: var(--primary-color);
+  background-color: var(--secondary-bg);
+}
+
+/* ===================================================
+   4. 예상 금액 표시 영역
+   - 큰 글씨(24px), 갈색, 굵게, 가운데 정렬
+   =================================================== */
+#estimated-price-area {
+  background-color: var(--price-bg);
+  border: 1px solid var(--price-border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  text-align: center; /* 가운데 정렬 */
+  font-size: 1.05rem;
+  font-weight: bold;  /* 굵게 */
+  color: var(--primary-color); /* 갈색 */
+  box-shadow: var(--shadow-sm);
+}
+
+#estimated-price-area #total-price {
+  font-size: 24px;   /* 큰 글씨 24px */
+  font-weight: bold; /* 굵게 */
+  color: var(--primary-color); /* 갈색 */
+  margin: 0 2px;
+}
+
+/* ===================================================
+   5. 버튼 영역 (주문하기 & 다시 작성)
+   =================================================== */
+form#order-form > div:last-of-type {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+button {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: bold;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm); /* 둥근 모서리 */
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+}
+
+/* 주문하기 버튼: 갈색 배경, 흰색 글씨, hover시 약간 밝게 */
+#submit-btn {
+  background-color: var(--primary-color); /* 갈색 배경 */
+  color: #ffffff;                        /* 흰색 글씨 */
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 2px 6px var(--primary-shadow);
+}
+
+#submit-btn:hover {
+  background-color: var(--primary-light); /* hover시 약간 밝게 */
+  border-color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+#submit-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+#submit-btn:active {
+  transform: translateY(0);
+}
+
+/* 다시 작성 버튼: 흰 배경 + 갈색 테두리 */
+#reset-btn {
+  background-color: #ffffff;             /* 흰 배경 */
+  color: var(--primary-color);           /* 갈색 글씨 */
+  border: 1px solid var(--primary-color); /* 갈색 테두리 */
+}
+
+#reset-btn:hover {
+  background-color: var(--secondary-bg);  /* hover시 은은한 배경 반응 */
+  transform: translateY(-1px);
+}
+
+#reset-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+#reset-btn:active {
+  transform: translateY(0);
+}
+
+/* ===================================================
+   6. 주문 확인 메시지 영역
+   - 연두색 배경, 초록 글씨, 둥근 모서리
+   =================================================== */
+#order-confirmation {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background-color: var(--success-bg);    /* 연두색 배경 */
+  border: 1px solid var(--success-border);
+  color: var(--success-text);             /* 초록 글씨 */
+  border-radius: var(--radius-sm);        /* 둥근 모서리 */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================================
+   7. 유틸리티: hidden 클래스
+   - hidden 클래스가 붙으면 화면에서 숨기기
+   =================================================== */
+.hidden {
+  display: none !important;
+}
+
+/* ===================================================
+   8. 반응형 모바일 최적화 (휴대폰에서도 깨지지 않게)
+   =================================================== */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 10px;
+  }
+
+  form#order-form {
+    padding: 18px 14px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  fieldset {
+    padding: 12px;
+    gap: 8px 12px;
+  }
+
+  #estimated-price-area {
+    padding: 12px 14px;
+  }
+
+  #estimated-price-area #total-price {
+    font-size: 22px;
+  }
+
+  button {
+    padding: 11px 10px;
+    font-size: 0.92rem;
+  }
+}
